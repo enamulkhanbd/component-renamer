@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A powerful, glassmorphic Figma plugin to bulk rename components and component sets, and update descriptions using CSV/JSON mapping files.">
+  <title>Component Renamer | Figma Plugin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow effects -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Header / Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="logo-box">
+          <i class="ri-price-tag-3-fill"></i>
+        </div>
+        <span>Component Renamer</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#simulator">Live Simulator</a>
+        <a href="#documentation">Documentation</a>
+        <a href="https://github.com/enamulkhanbd/component-renamer/releases/latest" target="_blank" class="btn btn-primary">
+          <i class="ri-download-cloud-line"></i> Download
+        </a>
+        <a href="https://github.com/enamulkhanbd/component-renamer" target="_blank" class="btn btn-github">
+          <i class="ri-github-fill"></i> GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge">Figma Plugin</div>
+        <h1>Bulk Rename Figma Components with Speed and Confidence</h1>
+        <p class="hero-subtitle">
+          Clean up messy component names and descriptions in seconds using CSV or JSON mapping files. Features dry runs, real-time validation, and instant one-click undo.
+        </p>
+        <div class="hero-actions">
+          <a href="#simulator" class="btn btn-primary btn-large">
+            <i class="ri-play-circle-line"></i> Try Live Simulator
+          </a>
+          <a href="https://github.com/enamulkhanbd/component-renamer/releases/latest" target="_blank" class="btn btn-secondary btn-large">
+            <i class="ri-download-cloud-line"></i> Download Plugin
+          </a>
+          <a href="#documentation" class="btn btn-secondary btn-large">
+            <i class="ri-book-open-line"></i> Read Guide
+          </a>
+        </div>
+      </div>
+      
+      <!-- Mini Preview Card / Floating Badge -->
+      <div class="hero-graphic">
+        <div class="figma-mini-card">
+          <div class="card-header">
+            <div class="figma-indicator"><i class="ri-shapes-line"></i> Figma Canvas</div>
+            <div class="card-dots"><span></span><span></span><span></span></div>
+          </div>
+          <div class="layers-comparison">
+            <div class="layer-item before">
+              <span class="status-badge before-badge">Before</span>
+              <span class="layer-name"><i class="ri-instance-line"></i> Button / Primary</span>
+            </div>
+            <div class="arrow-down"><i class="ri-arrow-down-double-line"></i></div>
+            <div class="layer-item after animate-pulse">
+              <span class="status-badge after-badge">After</span>
+              <span class="layer-name"><i class="ri-instance-line"></i> Button / Default</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="features-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Packed with powerful design ops features</h2>
+        <p>Built to handle complex renaming workflows safely without breaking production assets.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ri-file-code-line"></i></div>
+          <h3>CSV & JSON Import</h3>
+          <p>Drag-and-drop standard export tables or configuration arrays to quickly match component rename schemes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ri-shield-check-line"></i></div>
+          <h3>Dry Run Mode</h3>
+          <p>Preview execution results, verify exact match rates, and download reports before committing changes to Figma.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ri-history-line"></i></div>
+          <h3>One-Click Undo</h3>
+          <p>Accidentally rename the wrong components? Instantly revert the entire operation with a single click.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="ri-alert-line"></i></div>
+          <h3>Real-time Validation</h3>
+          <p>Catches duplicate names, non-matching source components, and file formatting issues before you run.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Live Simulator Section -->
+  <section id="simulator" class="simulator-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Interactive Plugin Simulator</h2>
+        <p>Experience how the Figma plugin functions. Load our pre-configured demo mapping below or upload your own, adjust settings, and preview the renaming operations on a mock Figma canvas.</p>
+      </div>
+
+      <div class="simulator-layout">
+        <!-- Figma Canvas Emulator -->
+        <div class="figma-canvas-emulator">
+          <div class="emulator-header">
+            <span class="title"><i class="ri-palette-line"></i> Figma Layer Canvas (Mock)</span>
+            <div class="controls">
+              <button id="btn-reset-canvas" class="btn-icon" title="Reset Canvas"><i class="ri-refresh-line"></i></button>
+            </div>
+          </div>
+          <div class="canvas-content">
+            <p class="canvas-help">This mock canvas represents components in your active Figma file:</p>
+            <div class="canvas-layers" id="mock-layers-container">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Figma Plugin UI Emulator -->
+        <div class="plugin-ui-emulator">
+          <div class="plugin-window-bar">
+            <div class="title"><i class="ri-price-tag-3-fill"></i> Component Renamer</div>
+            <div class="window-actions">
+              <span class="dot minimize"></span>
+              <span class="dot maximize"></span>
+              <span class="dot close"></span>
+            </div>
+          </div>
+          
+          <div class="plugin-body">
+            <!-- Drop Zone -->
+            <div class="drop-zone" id="drop-zone">
+              <i class="ri-upload-cloud-2-line upload-icon"></i>
+              <p>Drag & drop your CSV or JSON mapping here</p>
+              <span>or click to browse local files</span>
+              <input type="file" id="file-input" class="file-input" accept=".csv,.json">
+            </div>
+
+            <!-- File Info Panel -->
+            <div class="file-info" id="file-info">
+              <div class="file-info-text">
+                <span class="file-info-name" id="file-name">demo_rename.csv</span>
+                <span class="file-info-size" id="file-size">142 bytes</span>
+              </div>
+              <button class="btn-remove-file" id="btn-remove-file" title="Remove File">
+                <i class="ri-close-line"></i>
+              </button>
+            </div>
+
+            <!-- Options Panel -->
+            <div class="options-container">
+              <div class="section-title">Options</div>
+              <div class="options-grid">
+                <label class="option-item">
+                  <input type="checkbox" id="opt-rename-components" checked>
+                  <span>Rename Components</span>
+                </label>
+                <label class="option-item">
+                  <input type="checkbox" id="opt-update-descriptions" checked>
+                  <span>Update Descriptions</span>
+                </label>
+                <label class="option-item">
+                  <input type="checkbox" id="opt-lowercase">
+                  <span>Force Lowercase</span>
+                </label>
+                <label class="option-item">
+                  <input type="checkbox" id="opt-hyphenate">
+                  <span>Hyphenate Spaces</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Target Selection -->
+            <div class="options-container">
+              <div class="section-title">Target Types</div>
+              <div class="options-grid">
+                <label class="option-item">
+                  <input type="checkbox" id="opt-target-components" checked>
+                  <span>Components</span>
+                </label>
+                <label class="option-item">
+                  <input type="checkbox" id="opt-target-sets" checked>
+                  <span>Component Sets</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Dry Run Switch -->
+            <div class="dry-run-wrapper">
+              <div class="dry-run-text">
+                <span style="font-weight: 600;">Dry Run Mode</span>
+                <p style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">Preview changes without applying them</p>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="opt-dry-run" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <!-- Plugin Action Buttons -->
+            <div class="actions">
+              <button id="btn-load-demo" class="btn btn-secondary">
+                <i class="ri-magic-line"></i> Load Demo
+              </button>
+              <button id="btn-execute" class="btn btn-primary" disabled>
+                <i class="ri-play-fill"></i> Run Dry Run
+              </button>
+            </div>
+
+            <!-- Dashboard Results -->
+            <div class="results-dashboard" id="results-dashboard">
+              <div class="section-title">Execution Results</div>
+              <div class="stats-row">
+                <div class="stat-card">
+                  <div class="stat-val updated" id="stat-updated">0</div>
+                  <div class="stat-lbl">Matched</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-val not-found" id="stat-not-found">0</div>
+                  <div class="stat-lbl">Not Found</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-val duplicates" id="stat-duplicates">0</div>
+                  <div class="stat-lbl">Duplicates</div>
+                </div>
+              </div>
+
+              <div class="results-list" id="results-list">
+                <!-- Log entries will go here -->
+              </div>
+              
+              <div class="actions" id="post-run-actions" style="margin-top: 8px; display: none;">
+                <button id="btn-undo" class="btn btn-secondary" style="flex: 1;">
+                  <i class="ri-arrow-go-back-line"></i> Undo Rename
+                </button>
+                <button id="btn-download-report" class="btn btn-secondary" style="flex: 1;">
+                  <i class="ri-download-line"></i> Report
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Setup & Documentation Section -->
+  <section id="documentation" class="doc-section">
+    <div class="container">
+      <div class="doc-layout">
+        <div class="doc-sidebar">
+          <h3>Guide Topics</h3>
+          <ul>
+            <li><a href="#doc-format">File Format Specs</a></li>
+            <li><a href="#doc-local">Local Development</a></li>
+            <li><a href="#doc-usage">Figma Setup</a></li>
+          </ul>
+        </div>
+        
+        <div class="doc-main">
+          <h2 id="doc-format">File Format Specifications</h2>
+          <p>The plugin accepts CSV or JSON files matching your current component names with the target names and descriptions.</p>
+          
+          <div class="tabs">
+            <div class="tabs-header">
+              <button class="tab-btn active" data-tab="tab-csv">CSV Format</button>
+              <button class="tab-btn" data-tab="tab-json">JSON Format</button>
+            </div>
+            <div class="tab-content active" id="tab-csv">
+              <pre><code>current_name,new_name,description
+"Button / Primary","Button / Default","Primary button for forms"
+"Input/Text","Input/Default","Standard text input field"</code></pre>
+            </div>
+            <div class="tab-content" id="tab-json">
+              <pre><code>[
+  {
+    "current_name": "Button / Primary",
+    "new_name": "Button / Default",
+    "description": "Primary button for forms"
+  },
+  {
+    "current_name": "Input/Text",
+    "new_name": "Input/Default",
+    "description": "Standard text input field"
+  }
+]</code></pre>
+            </div>
+          </div>
+
+          <h2 id="doc-local" style="margin-top: 40px;">Local Development Setup</h2>
+          <p>To run this plugin locally inside Figma, build the source files by following these steps:</p>
+          
+          <pre><code class="bash"># 1. Clone the repository
+git clone https://github.com/enamulkhanbd/component-renamer.git
+cd component-renamer
+
+# 2. Install development packages
+npm install
+
+# 3. Build & watch for edits
+npm run watch</code></pre>
+
+          <h2 id="doc-usage" style="margin-top: 40px;">How to Import into Figma</h2>
+          <ol class="step-list">
+            <li>
+              <div class="step-num">1</div>
+              <div>
+                <strong>Open Figma</strong>: Make sure you're on the Figma Desktop application.
+              </div>
+            </li>
+            <li>
+              <div class="step-num">2</div>
+              <div>
+                <strong>Navigate to Development</strong>: Go to menu <em>Plugins</em> → <em>Development</em> → <em>Import plugin from manifest...</em>.
+              </div>
+            </li>
+            <li>
+              <div class="step-num">3</div>
+              <div>
+                <strong>Select manifest.json</strong>: Find the <code>manifest.json</code> in this project folder.
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-container">
+      <p>&copy; 2026 Component Renamer Figma Plugin. Licensed under MIT.</p>
+      <div class="footer-links">
+        <a href="https://github.com/enamulkhanbd/component-renamer" target="_blank"><i class="ri-github-fill"></i> GitHub Project</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
