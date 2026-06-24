@@ -159,7 +159,7 @@ body {
   text-decoration: none;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:visited {
   background: var(--accent);
   color: #0b0f19;
 }
@@ -171,7 +171,7 @@ body {
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
 }
 
-.btn-secondary {
+.btn-secondary, .btn-secondary:visited {
   background: rgba(255, 255, 255, 0.05);
   border-color: var(--border);
   color: var(--text-primary);
@@ -182,7 +182,7 @@ body {
   transform: translateY(-2px);
 }
 
-.btn-github {
+.btn-github, .btn-github:visited {
   background: #24292f;
   color: white;
 }
